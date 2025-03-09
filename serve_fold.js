@@ -14,7 +14,7 @@ app.get('/', (req, res) =>
 
 app.get('/fold', (req, res) =>
 {
-    const fileData = ">placeholder\n" + req.query.gene;
+    const fileData = ">MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken\n" + req.query.gene + "*";
     console.log(fileData);
 
     fs.writeFile('sequence.txt', fileData, function (err)
