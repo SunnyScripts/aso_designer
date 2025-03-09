@@ -6,7 +6,13 @@ const express = require('express')
 const app = express()
 const port = 80;
 
-app.get('/:query?', (req, res) =>
+app.get('/', (req, res) =>
+{
+
+});
+
+
+app.get('/fold:query?', (req, res) =>
 {
     const fileData = ">placeholder\n" + req.query.gene;
     console.log(fileData);
