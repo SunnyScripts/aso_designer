@@ -23,7 +23,7 @@ app.get('/:query?', (req, res) =>
             console.log(`stdout: ${stdout}`);
             console.error(`stderr: ${stderr}`);
 
-            fs.readFile('oligo.out', 'utf8', (err, data) =>
+            fs.readFile('output/oligo.out', 'utf8', (err, data) =>
             {
                 const re = /\d+-.+/g;
                 const rows = data.match(re);
