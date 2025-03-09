@@ -23,7 +23,28 @@ app.get('/:query?', (req, res) =>
             console.log(`stdout: ${stdout}`);
             console.error(`stderr: ${stderr}`);
 
-            res.json({probabilities: [".9", ".75", ".2"]});
+            fs.readFile('oligo.out', 'utf8', (err, data) =>
+            {
+                const re = /\d+-.+/g;
+                const rows = data.match(re);
+
+                let responseData = [];
+                for (let i = 0; i < rows.length; i++)
+                {
+                    let tmpBe = rows[i].match(/[\d|\.|-]+\d  \d$/)[0];
+
+                    let rowData = {
+                        start: rows[i].match(/^\d+/)[0],
+                        end: rows[i].match(/(?: )(\d+)/)[0],
+                        aso: rows[i].match(/[A-Z]+(?:  )/)[0],
+                        gc: rows[i].match(/\d+\.\d%/)[0],
+                        be: tmpBe.match(/[\d|\.|-]+\d/)[0],
+                        gggg: rows[i].match(/\d+$/)[0]
+                    };
+                    responseData.push(rowData);
+                }
+                res.json({oligo: responseData});
+            });
         });
     });
 });
