@@ -1,25 +1,15 @@
 
 const { exec } = require('child_process');
 
-exec('./home/rbcerto/Sfold-main/bin/sfold ', (error, stdout, stderr) =>
-{
-    if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-});
-
-    const express = require('express')
+const express = require('express')
 const app = express()
-const port = 3000
+const port = 80;
 
 app.get('/:query?', (req, res) =>
 {
     console.log(req.query);
 
-    exec('./home/rbcerto/Sfold-main/bin/sfold sequence.txt', (error, stdout, stderr) =>
+    exec('/home/rbcerto/Sfold-main/bin/sfold sequence.txt', (error, stdout, stderr) =>
     {
         if (error) {
             console.error(`exec error: ${error}`);
