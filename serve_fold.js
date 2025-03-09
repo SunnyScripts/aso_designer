@@ -12,7 +12,7 @@ app.get('/', (req, res) =>
 });
 
 
-app.get('/fold:query?', (req, res) =>
+app.get('/fold', (req, res) =>
 {
     const fileData = ">placeholder\n" + req.query.gene;
     console.log(fileData);
