@@ -20,7 +20,7 @@ app.get('/fold', (req, res) =>
     fs.writeFile('sequence.txt', fileData, function (err)
     {
         if (err) throw err;
-        exec('/home/rbcerto/Sfold-main/bin/sfold sequence.txt', (error, stdout, stderr) =>
+        exec('/home/rbcerto/Sfold-main/bin/sfold -i 2 -w 10 sequence.txt', (error, stdout, stderr) =>
         {
             if (error) {
                 console.error(`exec error: ${error}`);
