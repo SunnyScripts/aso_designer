@@ -1,0 +1,17 @@
+{
+  "name": "aso_designer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serve_fold.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SunnyScripts/aso_designer.git"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
