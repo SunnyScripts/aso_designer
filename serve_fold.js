@@ -56,5 +56,5 @@ app.get('/fold', (req, res) =>
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`RM Fold app listening on port ${port}`)
 });
