@@ -17,12 +17,13 @@ app.get('/fold', (req, res) =>
     const fileData = ">MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken\n" + req.query.gene;
     console.log(fileData);
 
-    fs.writeFile('sequence.txt', fileData, function (err, aso_length)
+    fs.writeFile('sequence.txt', fileData, function(err)
     {
         if (err) throw err;
-        exec(`/home/rbcerto/Sfold-main/bin/sfold -i 2 -w ${Number(aso_length)} sequence.txt`, (error, stdout, stderr) =>
+        exec(`/home/rbcerto/Sfold-main/bin/sfold -i 2 -w ${req.query.aso_length} sequence.txt`, (error, stdout, stderr) =>
         {
-            if (error) {
+            if (error)
+            {
                 console.error(`exec error: ${error}`);
                 return;
             }
@@ -52,7 +53,7 @@ app.get('/fold', (req, res) =>
                 res.json({oligo: responseData});
             });
         });
-    }, req.query.aso_length);
+    });
 });
 
 app.listen(port, () => {
