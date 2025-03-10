@@ -27,8 +27,10 @@ app.get('/fold', (req, res) =>
                 console.error(`exec error: ${error}`);
                 return;
             }
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
+            if(stdout)
+                console.log(`stdout: ${stdout}`);
+            if(stderr)
+                console.error(`stderr: ${stderr}`);
 
             fs.readFile('output/oligo.out', 'utf8', (err, data) =>
             {
