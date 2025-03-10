@@ -14,13 +14,13 @@ app.get('/', (req, res) =>
 
 app.get('/fold', (req, res) =>
 {
-    const fileData = ">MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken\n" + req.query.gene + "*";
+    const fileData = ">MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken\n" + req.query.gene;
     console.log(fileData);
 
-    fs.writeFile('sequence.txt', fileData, function (err)
+    fs.writeFile('sequence.txt', fileData, function (err, aso_length)
     {
         if (err) throw err;
-        exec('/home/rbcerto/Sfold-main/bin/sfold -i 2 -w 10 sequence.txt', (error, stdout, stderr) =>
+        exec(`/home/rbcerto/Sfold-main/bin/sfold -i 2 -w ${aso_length} sequence.txt`, (error, stdout, stderr) =>
         {
             if (error) {
                 console.error(`exec error: ${error}`);
@@ -41,8 +41,8 @@ app.get('/fold', (req, res) =>
 
                     let rowData = {
                         start: rows[i].match(/^\d+/)[0],
-                        end: rows[i].match(/(?: )(\d+)/)[0],
-                        aso: rows[i].match(/[A-Z]+(?:  )/)[0],
+                        end: rows[i].match(/\d+/g)[1],
+                        aso: rows[i].match(/[A-Z]+/g)[1],
                         gc: rows[i].match(/\d+\.\d%/)[0],
                         be: tmpBe.match(/[\d|\.|-]+\d/)[0],
                         gggg: rows[i].match(/\d+$/)[0]
@@ -52,7 +52,7 @@ app.get('/fold', (req, res) =>
                 res.json({oligo: responseData});
             });
         });
-    });
+    }, req.query.aso_length);
 });
 
 app.listen(port, () => {
