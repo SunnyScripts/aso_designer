@@ -1,1 +1,2 @@
-# aso_designer
+# ASO Designer
+We use sFold to identify ASOs with a high probability of binding to a target gene. sFold only runs on x86 Linux so was deployed to a cloud VM and wrapped in a Node JS server. This allows us to dockerize the program for cross platform compatibility and scalability. A cleaner web app was created to consume the output data and present this in a more user-friendly way.
