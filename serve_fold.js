@@ -29,8 +29,6 @@ app.get('/fold', (req, res) =>
             }
             if(stdout)
                 console.log(`stdout: ${stdout}`);
-            if(stderr)
-                console.error(`stderr: ${stderr}`);
 
             fs.readFile('output/oligo.out', 'utf8', (err, data) =>
             {
